@@ -1,13 +1,13 @@
 import express from 'express';
-import CardControllers from './controllers/CardControllers';
+import NomeControllers from './controllers/NomeControllers';
 
 const routes = express.Router();
 
-const cardController = new CardControllers();
+const nomeController = new NomeControllers();
 
 
-routes.get('/card', cardController.index);
-routes.post('/card', cardController.create);
+routes.get('/nome', nomeController.index);
+routes.post('/nome', nomeController.create);
 
 
 export default routes;
