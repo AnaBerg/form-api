@@ -11,9 +11,8 @@ export default class NomeController {
     const { nome } = req.query as Nomes;
 
     const cards = nome
-      ? await db('nomes').where('nomes.name', 'like', `%${name}%`)
+      ? await db('nomes').where('nomes.nome', 'like', `%${nome}%`)
       : await db('nomes');
-
     return res.json(cards);
   }
 
@@ -28,7 +27,10 @@ export default class NomeController {
         sobrenome,
       });
       await trx.commit();
-      return res.status(201).send();
+      return res
+        .status(201)
+        .send()
+        .json({ message: 'Nome criado com sucesso' });
     } catch (error) {
       await trx.rollback();
       return res.status(400).json({
